@@ -45,7 +45,7 @@ public class LoginTest extends Base{
 		driver.findElement(By.xpath("//li//a[contains(@href,'account/login')]")).click();
 		driver.findElement(By.id("input-email")).sendKeys(Utilities.getTimeStamp());
 		System.out.println(driver.findElement(By.id("input-email")).getAttribute("value"));
-		driver.findElement(By.id("input-password")).sendKeys("1q2345");
+		driver.findElement(By.id("input-password")).sendKeys(dataprop.getProperty("invalidPassword"));
 		driver.findElement(By.xpath("//input[@value='Login']")).click();
 		String actualErrorMassage = driver.findElement(By.xpath("//div[contains(@class,'alert')]")).getText();
 		String expectedErrorMassage = "Warning: No match for E-Mail Address and/or Password";
