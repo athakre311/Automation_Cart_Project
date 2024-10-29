@@ -15,6 +15,8 @@ import com.abby.qa.utils.Utilities;
 
 public class Base {
 
+	// Base calss details
+
 	WebDriver driver;
 	public Properties prop;
 
