@@ -48,9 +48,9 @@ public class LoginTest extends Base{
 		driver.findElement(By.id("input-password")).sendKeys(dataprop.getProperty("invalidPassword"));
 		driver.findElement(By.xpath("//input[@value='Login']")).click();
 		String actualErrorMassage = driver.findElement(By.xpath("//div[contains(@class,'alert')]")).getText();
-		String expectedErrorMassage = "Warning: No match for E-Mail Address and/or Password";
+//		String expectedErrorMassage = "Warning: No match for E-Mail Address and/or Password";
 		
-		Assert.assertTrue(actualErrorMassage.contains(expectedErrorMassage), "Invalid error massage");
+		Assert.assertTrue(actualErrorMassage.contains(dataprop.getProperty("expectedErrorMassage")), "Invalid error massage");
 		
 
 	}

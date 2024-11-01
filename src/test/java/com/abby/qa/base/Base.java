@@ -19,7 +19,6 @@ public class Base {
 
 	WebDriver driver;
 	public Properties prop;
-
 	public Properties dataprop;
 
 
@@ -29,10 +28,8 @@ public class Base {
 
 		File propFile = new File(
 				System.getProperty("user.dir") + "\\src\\main\\java\\com\\abby\\qa\\config\\config.properties");
-
 		File dataPropFile = new File(
 				System.getProperty("user.dir") + "\\src\\main\\java\\com\\abby\\qa\\testdata\\testdata.properties");
-
 
 		try {
 			FileInputStream fis = new FileInputStream(propFile);
