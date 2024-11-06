@@ -13,11 +13,10 @@ import com.abby.qa.utils.Utilities;
 public class RegisterTest extends Base {
 
 	WebDriver driver;
-	
 	public RegisterTest() {
 		super();
 	}
-	
+
 	@BeforeMethod
 	public void setup() {
 		driver = inisalizeBrowserOpenUrl(prop.getProperty("browser"));
@@ -28,18 +27,16 @@ public class RegisterTest extends Base {
 		driver.quit();
 	}
 
-	
 	@Test(priority = 1)
 	public void VerifyRegisterWithMandatoryFields() {
-
 		driver.findElement(By.xpath("//span[text()='My Account']")).click();
 		driver.findElement(By.xpath("//div[@id='top-links']//a[contains(@href,'account/register')]")).click();
-		driver.findElement(By.id("input-firstname")).sendKeys("input-firstname");
-		driver.findElement(By.id("input-lastname")).sendKeys("input-lastname");
+		driver.findElement(By.id("input-firstname")).sendKeys(dataprop.getProperty("firstName"));
+		driver.findElement(By.id("input-lastname")).sendKeys(dataprop.getProperty("lastName"));
 		driver.findElement(By.id("input-email")).sendKeys(Utilities.getTimeStamp());
-		driver.findElement(By.id("input-telephone")).sendKeys("123456789");
-		driver.findElement(By.id("input-password")).sendKeys("aaa1234");
-		driver.findElement(By.id("input-confirm")).sendKeys("aaa1234");
+		driver.findElement(By.id("input-telephone")).sendKeys(dataprop.getProperty("telephone"));
+		driver.findElement(By.id("input-password")).sendKeys(dataprop.getProperty("password"));
+		driver.findElement(By.id("input-confirm")).sendKeys(dataprop.getProperty("confirmPassword"));
 		driver.findElement(By.xpath("//input[@type='checkbox']")).click();
 		driver.findElement(By.xpath("//input[@type='submit']")).click();
 		String actualErrorMassage = driver.findElement(By.xpath("//div[@id='content']/h1")).getText();
