@@ -21,14 +21,14 @@ public class LoginTest extends Base{
 	}
 	
 	WebDriver driver;
-//	HomePage homePage;
+	HomePage homePage;
 	LoginPage loginPage;
 	AccountPage accountPage;
 
 	@BeforeMethod
 	public void setup() {
 		driver = inisalizeBrowserOpenUrl(prop.getProperty("browser"));
-		HomePage homePage = new HomePage(driver);
+		homePage = new HomePage(driver);
 		homePage.clickOnMyAccount();
 		homePage.selectLoginOption();
 		loginPage = new LoginPage(driver);
@@ -50,7 +50,8 @@ public class LoginTest extends Base{
 
 	@DataProvider
 	public Object[][] supplyTestData(){
-		Object[][] data = {{"amotooricap4@gmail.com","12345"},{"amotooricap41@gmail.com","123345"},{"amotooricap4@gmail.com","12345"}};
+		Object[][] data = {{"amotooricap4@gmail.com","12345"}};
+//		Object[][] data = {{"amotooricap4@gmail.com","12345"},{"amotooricap41@gmail.com","123345"},{"amotooricap4@gmail.com","12345"}};
 //		Object[][] data = Utilities.getTestDataFromExcel("Sheet1");
 		return data;
 	}
@@ -58,16 +59,32 @@ public class LoginTest extends Base{
 	@Test (priority=2)
 	public void TC_LF_002_loginWithInvalidCredentials() {
 		loginPage.enterEmail(Utilities.getTimeStamp());
+		loginPage.enterPassword(dataprop.getProperty("invalidPassword"));
+		loginPage.clickonLoginButton();
+		String actualErrorMassage = loginPage.getwarningMassage();
+		Assert.assertTrue(actualErrorMassage.contains(dataprop.getProperty("expectedErrorMassage")), "Invalid error massage");
+	}
+
+	@Test (priority=3)
+	public void TC_LF_003_loginWithInvalidEmailValidPass() {
+		loginPage.enterEmail(Utilities.getTimeStamp());
 		loginPage.enterPassword(prop.getProperty("validPassword"));
 		loginPage.clickonLoginButton();
 		String actualErrorMassage = loginPage.getwarningMassage();
 		Assert.assertTrue(actualErrorMassage.contains(dataprop.getProperty("expectedErrorMassage")), "Invalid error massage");
 	}
 
-	@Test (priority=2)
-	public void TC_LF_003_loginWithInvalidEmailValidPass() {
-		loginPage.enterEmail(Utilities.getTimeStamp());
+	@Test (priority=4)
+	public void TC_LF_004_loginWithValidEmailInvalidPass() {
+		loginPage.enterEmail(prop.getProperty("validEmail"));
 		loginPage.enterPassword(dataprop.getProperty("invalidPassword"));
+		loginPage.clickonLoginButton();
+		String actualErrorMassage = loginPage.getwarningMassage();
+		Assert.assertTrue(actualErrorMassage.contains(dataprop.getProperty("expectedErrorMassage")), "Invalid error massage");
+	}
+
+	@Test (priority=5)
+	public void TC_LF_005_loginWithoutCerdentials() {
 		loginPage.clickonLoginButton();
 		String actualErrorMassage = loginPage.getwarningMassage();
 		Assert.assertTrue(actualErrorMassage.contains(dataprop.getProperty("expectedErrorMassage")), "Invalid error massage");

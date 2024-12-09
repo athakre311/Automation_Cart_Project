@@ -14,6 +14,9 @@ public class HomePage {
     @FindBy(xpath = "//li//a[contains(@href,'account/login')]")
     private WebElement loginOption;
 
+    @FindBy(xpath = "//div[@id='top-links']//a[contains(@href,'account/register')]")
+    private WebElement registerOption;
+
 
     public HomePage(WebDriver driver){
         this.driver = driver;
@@ -26,6 +29,10 @@ public class HomePage {
 
     public void selectLoginOption(){
         loginOption.click();
+    }
+
+    public void selectRegisterOption(){
+        registerOption.click();
     }
 
 }

@@ -19,8 +19,7 @@ public class AccountPage {
 
     public boolean getExpectedMassage()
     {
-        expectedMassage.isDisplayed();
-        return false;
+        return expectedMassage.isDisplayed();
     }
 
 }

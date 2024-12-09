@@ -1,5 +1,7 @@
 package com.abby.qa.testcases;
 
+import com.abby.qa.pages.HomePage;
+import com.abby.qa.pages.RegisterPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -13,6 +15,9 @@ import com.abby.qa.utils.Utilities;
 public class RegisterTest extends Base {
 
 	WebDriver driver;
+	HomePage homePage;
+	RegisterPage registerPage;
+
 	public RegisterTest() {
 		super();
 	}
@@ -20,6 +25,9 @@ public class RegisterTest extends Base {
 	@BeforeMethod
 	public void setup() {
 		driver = inisalizeBrowserOpenUrl(prop.getProperty("browser"));
+		homePage = new HomePage(driver);
+		homePage.clickOnMyAccount();
+		homePage.selectRegisterOption();
 	}
 	
 	@AfterMethod
@@ -29,18 +37,18 @@ public class RegisterTest extends Base {
 
 	@Test(priority = 1)
 	public void VerifyRegisterWithMandatoryFields() {
-		driver.findElement(By.xpath("//span[text()='My Account']")).click();
-		driver.findElement(By.xpath("//div[@id='top-links']//a[contains(@href,'account/register')]")).click();
-		driver.findElement(By.id("input-firstname")).sendKeys(dataprop.getProperty("firstName"));
-		driver.findElement(By.id("input-lastname")).sendKeys(dataprop.getProperty("lastName"));
-		driver.findElement(By.id("input-email")).sendKeys(Utilities.getTimeStamp());
-		driver.findElement(By.id("input-telephone")).sendKeys(dataprop.getProperty("telephone"));
-		driver.findElement(By.id("input-password")).sendKeys(dataprop.getProperty("password"));
-		driver.findElement(By.id("input-confirm")).sendKeys(dataprop.getProperty("confirmPassword"));
-		driver.findElement(By.xpath("//input[@type='checkbox']")).click();
-		driver.findElement(By.xpath("//input[@type='submit']")).click();
-		String actualErrorMassage = driver.findElement(By.xpath("//div[@id='content']/h1")).getText();
-		System.out.println(actualErrorMassage);
+		registerPage = new RegisterPage(driver);
+		registerPage.enterFirstname(dataprop.getProperty("firstName"));
+		registerPage.enterLastname(dataprop.getProperty("lastName"));
+		registerPage.enterEmail(Utilities.getTimeStamp());
+		registerPage.enterTelephone(dataprop.getProperty("telephone"));
+		registerPage.enterPassword(dataprop.getProperty("password"));
+		registerPage.enterConfirmPassword(dataprop.getProperty("confirmPassword"));
+		registerPage.clickPrivacyPolicyCheckbox();
+		registerPage.clickOnSubmitButton();
+		String actualErrorMassage = registerPage.getActualErrorMassage();
+
+		System.out.println(actualErrorMassage+">>>");
 		String expectedErrorMassage = "Your Account Has Been Created";
 		Assert.assertTrue(actualErrorMassage.contains(expectedErrorMassage), "Error");
 
@@ -49,47 +57,43 @@ public class RegisterTest extends Base {
 	@Test(priority = 2)
 	public void VerifyRegisterWithAllFields() {
 
-		driver.findElement(By.xpath("//span[text()='My Account']")).click();
-		driver.findElement(By.xpath("//div[@id='top-links']//a[contains(@href,'account/register')]")).click();
-		driver.findElement(By.id("input-firstname")).sendKeys("input-firstname");
-		driver.findElement(By.id("input-lastname")).sendKeys("input-lastname");
-		driver.findElement(By.id("input-email")).sendKeys(Utilities.getTimeStamp());
-		driver.findElement(By.id("input-telephone")).sendKeys("123456789");
-		driver.findElement(By.id("input-password")).sendKeys("aaa1234");
-		driver.findElement(By.id("input-confirm")).sendKeys("aaa1234");
+		registerPage = new RegisterPage(driver);
+		registerPage.enterFirstname(dataprop.getProperty("firstName"));
+		registerPage.enterLastname(dataprop.getProperty("lastName"));
+		registerPage.enterEmail(Utilities.getTimeStamp());
+		registerPage.enterTelephone(dataprop.getProperty("telephone"));
+		registerPage.enterPassword(dataprop.getProperty("password"));
+		registerPage.enterConfirmPassword(dataprop.getProperty("confirmPassword"));
+		registerPage.clickOnSubscribeLable();
+		registerPage.clickPrivacyPolicyCheckbox();
+		registerPage.clickOnSubmitButton();
 
-		driver.findElement(By.xpath("//label[text()='Yes']")).click();
-		driver.findElement(By.xpath("//input[@type='checkbox']")).click();
-		driver.findElement(By.xpath("//input[@type='submit']")).click();
-		String actualErrorMassage = driver.findElement(By.xpath("//div[@id='content']/h1")).getText();
-		System.out.println(actualErrorMassage);
+		String actualErrorMassage = registerPage.getActualErrorMassage();
+
+		System.out.println(actualErrorMassage+">>>");
 		String expectedErrorMassage = "Your Account Has Been Created";
 		Assert.assertTrue(actualErrorMassage.contains(expectedErrorMassage), "Error");
 
 	}
 	
-	@Test(priority = 2)
+	@Test(priority = 3)
 	public void VerifyRegisterWithExistingEmail() {
 
-		driver.findElement(By.xpath("//span[text()='My Account']")).click();
-		driver.findElement(By.xpath("//div[@id='top-links']//a[contains(@href,'account/register')]")).click();
-		driver.findElement(By.id("input-firstname")).sendKeys("input-firstname");
-		driver.findElement(By.id("input-lastname")).sendKeys("input-lastname");
-		driver.findElement(By.id("input-email")).sendKeys("amotooricap4@gmail.com");
-		driver.findElement(By.id("input-telephone")).sendKeys("123456789");
+		registerPage = new RegisterPage(driver);
+		registerPage.enterFirstname(dataprop.getProperty("firstName"));
+		registerPage.enterLastname(dataprop.getProperty("lastName"));
+		registerPage.enterEmail(prop.getProperty("validEmail"));
+		registerPage.enterTelephone(dataprop.getProperty("telephone"));
+		registerPage.enterPassword(dataprop.getProperty("password"));
+		registerPage.enterConfirmPassword(dataprop.getProperty("confirmPassword"));
+		registerPage.clickOnSubscribeLable();
+		registerPage.clickPrivacyPolicyCheckbox();
+		registerPage.clickOnSubmitButton();
 
-		driver.findElement(By.id("input-password")).sendKeys("aaa1234");
-		driver.findElement(By.id("input-confirm")).sendKeys("aaa1234");
-
-		driver.findElement(By.xpath("//label[text()='Yes']")).click();
-		driver.findElement(By.xpath("//input[@type='checkbox']")).click();
-		driver.findElement(By.xpath("//input[@type='submit']")).click();
-
-		String actualErrorMassage = driver.findElement(By.xpath("//div[@class='alert alert-danger alert-dismissible']")).getText();
-		System.out.println(actualErrorMassage);
+		String actualErrorMassage = registerPage.getEmailExistErrorMassage();
+		System.out.println(actualErrorMassage+">>>");
 		String expectedErrorMassage = "Warning: E-Mail Address is already registered";
 		Assert.assertTrue(actualErrorMassage.contains(expectedErrorMassage), "Error");
-
 	}
 
 }
