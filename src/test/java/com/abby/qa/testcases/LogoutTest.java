@@ -6,10 +6,12 @@ import org.testng.annotations.Test;
 
 public class LogoutTest {
 
+    public WebDriver driver;
+
     @Test
     public void verifyLogout(){
         System.out.println("Hello");
-        WebDriver driver = new ChromeDriver();
+        driver = new ChromeDriver();
         driver.get("https://mvnrepository.com/");
     }
 

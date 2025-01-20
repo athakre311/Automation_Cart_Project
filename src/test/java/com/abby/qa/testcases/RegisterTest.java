@@ -14,7 +14,7 @@ import com.abby.qa.utils.Utilities;
 
 public class RegisterTest extends Base {
 
-	WebDriver driver;
+	public WebDriver driver;
 	HomePage homePage;
 	RegisterPage registerPage;
 
