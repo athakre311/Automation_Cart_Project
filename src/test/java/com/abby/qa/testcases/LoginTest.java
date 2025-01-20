@@ -20,7 +20,7 @@ public class LoginTest extends Base{
 		super();
 	}
 	
-	WebDriver driver;
+	public WebDriver driver;
 	HomePage homePage;
 	LoginPage loginPage;
 	AccountPage accountPage;

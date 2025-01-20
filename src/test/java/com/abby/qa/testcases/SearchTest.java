@@ -11,7 +11,7 @@ import com.abby.qa.base.Base;
 
 public class SearchTest extends Base {
 
-	WebDriver driver;
+	public WebDriver driver;
 	public SearchTest() {
 		super();
 	}
