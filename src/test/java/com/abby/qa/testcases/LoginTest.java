@@ -16,6 +16,8 @@ import com.abby.qa.utils.Utilities;
 
 public class LoginTest extends Base{
 	
+	
+	 // Hello Abby
 	public LoginTest() {
 		super();
 	}
@@ -50,7 +52,7 @@ public class LoginTest extends Base{
 
 	@DataProvider
 	public Object[][] supplyTestData(){
-		Object[][] data = {{"amotooricap4@gmail.com","12345"}};
+		Object[][] data = {{"amotooricap3@gmail.com","12345"}};
 //		Object[][] data = {{"amotooricap4@gmail.com","12345"},{"amotooricap41@gmail.com","123345"},{"amotooricap4@gmail.com","12345"}};
 //		Object[][] data = Utilities.getTestDataFromExcel("Sheet1");
 		return data;

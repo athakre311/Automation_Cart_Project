@@ -6,8 +6,8 @@
   </listeners>
   <test thread-count="5" name="Test">
     <classes>
-<!--      <class name="com.abby.qa.testcases.LoginTest"/>-->
-<!--      <class name="com.abby.qa.testcases.SearchTest"/>-->
+      <class name="com.abby.qa.testcases.LoginTest"/>
+      <class name="com.abby.qa.testcases.SearchTest"/>
       <class name="com.abby.qa.testcases.RegisterTest"/>
       <class name="com.abby.qa.testcases.LogoutTest"/>
     </classes>
