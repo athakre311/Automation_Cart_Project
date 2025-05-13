@@ -17,6 +17,13 @@ public class HomePage {
     @FindBy(xpath = "//div[@id='top-links']//a[contains(@href,'account/register')]")
     private WebElement registerOption;
 
+    @FindBy(xpath="//div[@id='search']//input")
+    private WebElement searchBox;
+
+    @FindBy(xpath="//span//button")
+    private WebElement searchButton;
+
+
 
     public HomePage(WebDriver driver){
         this.driver = driver;
@@ -34,5 +41,15 @@ public class HomePage {
     public void selectRegisterOption(){
         registerOption.click();
     }
+
+    public void EnterTextInsearchBox(String str){
+        searchBox.sendKeys(str);
+    }
+
+    public void clickSearchButton(){
+        searchButton.click();
+    }
+
+
 
 }
