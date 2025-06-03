@@ -10,6 +10,9 @@
       <class name="com.abby.qa.testcases.SearchTest"/>
       <class name="com.abby.qa.testcases.RegisterTest"/>
       <class name="com.abby.qa.testcases.LogoutTest"/>
+      <class name="com.abby.qa.testcases.AddToCart"/>
+      <class name="com.abby.qa.testcases.Shopping_Cart"/>
+
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
