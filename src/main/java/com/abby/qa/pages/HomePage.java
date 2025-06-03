@@ -23,7 +23,8 @@ public class HomePage {
     @FindBy(xpath="//span//button")
     private WebElement searchButton;
 
-
+    @FindBy(xpath="//h1")
+    private WebElement logo;
 
     public HomePage(WebDriver driver){
         this.driver = driver;
@@ -48,6 +49,10 @@ public class HomePage {
 
     public void clickSearchButton(){
         searchButton.click();
+    }
+
+    public void clickLogo(){
+        logo.click();
     }
 
 
