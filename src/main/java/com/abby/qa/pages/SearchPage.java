@@ -13,7 +13,16 @@ public class SearchPage {
 
     @FindBy  (xpath ="//a[text()='shopping cart']")
     private WebElement  shoppingCart;
-
+    
+    @FindBy  (xpath ="//button[@data-original-title='Add to Wish List']")
+    private WebElement wishListIcon;
+    
+    @FindBy  (xpath ="//div[contains(@class,'success')]")
+    private WebElement WishListAddsuccessMessage;
+    
+    @FindBy  (xpath ="//a[contains(@href,'wishlist')]")
+    private WebElement WishListLink;
+    
     public SearchPage(WebDriver driver){
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -25,6 +34,18 @@ public class SearchPage {
 
     public void clickShoppingCart(){
         shoppingCart.click();
+    }
+    
+    public void clickWishListIcon(){
+    	wishListIcon.click();
+    }
+    
+    public void clickWishListLink(){
+    	 WishListLink.click();
+    }
+    
+    public String getWishListAddsuccessMessage(){
+    	return WishListAddsuccessMessage.getText();
     }
 
 }
