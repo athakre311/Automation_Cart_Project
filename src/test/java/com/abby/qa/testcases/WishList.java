@@ -1,31 +1,23 @@
 package com.abby.qa.testcases;
 
-import com.abby.qa.base.Base;
-import com.abby.qa.pages.AccountPage;
-import com.abby.qa.pages.HomePage;
-import com.abby.qa.pages.LoginPage;
-import com.abby.qa.utils.Utilities;
-import lombok.Data;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-public class AddToCart extends Base{
+import com.abby.qa.base.Base;
+import com.abby.qa.pages.HomePage;
+import com.abby.qa.pages.LoginPage;
+import com.abby.qa.pages.SearchPage;
 
-
-	 // Hello Abby
-	public AddToCart() {
-		super();
-	}
+public class WishList extends Base{
 	
 	public WebDriver driver;
-	HomePage homePage;
+	
 	LoginPage loginPage;
-	AccountPage accountPage;
-
+	HomePage homePage;
+	SearchPage searchPage;
 	@BeforeMethod
 	public void setup() {
 		driver = inisalizeBrowserOpenUrl(prop.getProperty("browser"));
@@ -33,21 +25,27 @@ public class AddToCart extends Base{
 		homePage.clickOnMyAccount();
 		homePage.selectLoginOption();
 		loginPage = new LoginPage(driver);
+		searchPage = new SearchPage(driver);
 	}
 	
-//	@AfterMethod
+	@AfterMethod
 	public void tearDown() {
 		driver.quit();
 	}
-
-@Test
-	public void login01() {
+	
+	@Test
+	public void verifyWishList() {
 		loginPage.enterEmail(prop.getProperty("validEmail"));
 		loginPage.enterPassword(prop.getProperty("validPassword"));
 		loginPage.clickonLoginButton();
-		accountPage = new AccountPage(driver);
-		Assert.assertTrue(accountPage.getExpectedMassage(),"Edit your account information option is not displayed");
+		homePage.EnterTextInsearchBox("apple");
+		homePage.clickSearchButton();
+		searchPage.clickWishListIcon();
+		String str1 = searchPage.getWishListAddsuccessMessage();
+		String str2 = "Success: You have added Apple Cinema 30\" to your wish list!";
+		Assert.assertTrue(str1.contains(str2));
+		searchPage.clickWishListLink();
+		System.out.println("hello");
 	}
-
 
 }

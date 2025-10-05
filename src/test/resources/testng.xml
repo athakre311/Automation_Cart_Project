@@ -12,7 +12,8 @@
       <class name="com.abby.qa.testcases.LogoutTest"/>
       <class name="com.abby.qa.testcases.AddToCart"/>
       <class name="com.abby.qa.testcases.Shopping_Cart"/>
-
+      <class name="com.abby.qa.testcases.Demo"/>
+      <class name="com.abby.qa.testcases.HomePageTest"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

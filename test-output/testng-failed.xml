@@ -3,14 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.abby.qa.testcases.LoginTest">
+      <class name="com.abby.qa.testcases.WishList">
         <methods>
-          <include name="loginWithValidCredentials"/>
           <include name="setup"/>
           <include name="tearDown"/>
-          <include name="loginWithInvalidCredentials"/>
+          <include name="verifyWishList"/>
         </methods>
-      </class> <!-- com.abby.qa.testcases.LoginTest -->
+      </class> <!-- com.abby.qa.testcases.WishList -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
