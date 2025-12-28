@@ -77,6 +77,5 @@ public class MyListeners implements ITestListener {
             throw new RuntimeException(e);
         }
 
-
     }
 }

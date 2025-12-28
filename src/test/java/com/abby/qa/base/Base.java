@@ -67,7 +67,7 @@ public class Base {
 
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Utilities.impl_Wait));
 		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(Utilities.pageLoad_Timeout));
-		driver.get(prop.getProperty("url1"));
+		driver.get(prop.getProperty("url"));
 //		driver.get("https://tutorialsninja.com/demo/");
 		return driver;
 	}
